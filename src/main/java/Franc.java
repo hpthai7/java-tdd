@@ -1,14 +1,11 @@
 public class Franc extends Money {
-    public Franc(Double amount) {
-        super(amount);
+    public Franc(Double amount, String currency) {
+        super(amount, currency);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Franc)) {
-            return false;
-        }
-        return this.amount == ((Franc) obj).amount;
+    public Money times(float factor) {
+        return new Franc(this.amount * factor, this.currency);
     }
 
 }
