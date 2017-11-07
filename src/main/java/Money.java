@@ -1,4 +1,4 @@
-public class Money {
+public class Money implements Operation {
 
     protected double amount;
     protected String currency;
@@ -20,12 +20,14 @@ public class Money {
         this.currency = currency;
     }
 
-    public Money times(float factor) {
-        return new Money(factor * this.getAmount(), this.currency);
+    @Override
+    public Operation plus(Money addend) {
+        return new Money(this.amount + addend.getAmount(), this.currency);
     }
 
-    public Money plus(Money money) throws Exception {
-        return new Money(this.amount + money.getAmount(), this.currency);
+    @Override
+    public Operation times(float factor) {
+        return new Money(factor * this.getAmount(), this.currency);
     }
 
     @Override
